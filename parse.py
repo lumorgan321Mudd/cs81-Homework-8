@@ -70,10 +70,12 @@ def cyk(rules, variable, string, memo):
                     variable1 = item[0]
                     variable2 = item[1]
 
-                    result1 = cyk(rules, variable1, left, memo)
+                result1 = cyk(rules, variable1, left, memo)
+
+                if result1[0]:
                     result2 = cyk(rules, variable2, right, memo)
 
-                    if result1[0] and result2[0]:
+                    if result2[0]:
                         memo[(variable, string)] = (True, (variable, result1[1], result2[1]))
                         return memo[(variable, string)]
         memo[(variable, string)] = (False, None)
